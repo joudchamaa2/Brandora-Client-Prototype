@@ -1,0 +1,149 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ */
+/*  Brandora design tokens                                             */
+/* ------------------------------------------------------------------ */
+@theme {
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-heavy: 'Archivo Black', 'Space Grotesk Variable', Impact, sans-serif;
+
+  /* surfaces */
+  --color-ink: #05070e;
+  --color-bg: #080c18;
+  --color-bg-2: #0b1122;
+  --color-surface: #111a32;
+  --color-surface-2: #16213e;
+  --color-surface-3: #1c2848;
+  --color-line: #1f2a48;
+  --color-line-strong: #2a3860;
+
+  /* text */
+  --color-fg: #f5f7fb;
+  --color-muted: #8b92a8;
+  --color-dim: #5b6178;
+
+  /* brand */
+  --color-gold: #e8b948;
+  --color-gold-deep: #b9832a;
+  --color-gold-ink: #1a1300;
+
+  /* status */
+  --color-success: #34d399;
+  --color-info: #60a5fa;
+  --color-warn: #fbbf24;
+  --color-danger: #f87171;
+  --color-violet: #a78bfa;
+
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.03) inset, 0 12px 32px -18px rgb(0 0 0 / 0.7);
+  --shadow-glow: 0 10px 30px -10px rgb(232 185 72 / 0.45);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgb(232 185 72 / 0.35);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* Background used behind the whole presentation */
+  .app-backdrop {
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgb(30 44 86 / 0.55), transparent 60%),
+      radial-gradient(800px 500px at 100% 100%, rgb(232 185 72 / 0.05), transparent 60%),
+      var(--color-bg);
+  }
+
+  .gold-gradient {
+    background-image: linear-gradient(135deg, var(--color-gold), var(--color-gold-deep));
+  }
+
+  .gold-text {
+    background-image: linear-gradient(135deg, #f3cf72, var(--color-gold) 40%, var(--color-gold-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card-surface {
+    background: linear-gradient(160deg, var(--color-surface) 0%, #0f1730 100%);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Smooth re-skinning when the storefront theme/logo changes */
+  .storefront,
+  .storefront * {
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      border-radius 0.4s ease,
+      box-shadow 0.5s ease;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .thin-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+  .thin-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .thin-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border-radius: 999px;
+  }
+}
